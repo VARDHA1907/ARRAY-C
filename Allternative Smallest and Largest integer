@@ -1,0 +1,51 @@
+Question:
+
+The program must accept N integers as the input. The program must print the integers in the following order smallest integer, largest integer, second smallest integer, second largest integer and so on. 
+Boundary Condition(s): 2 <= N <= 100
+Example Input/Output 1: Input: 6 10 12 8 9 11 5 Output: 5 12 8 11 9 10 
+Example Input/Output 2: Input: 5 9 1 18 2 7 Output: 1 18 2 9 7 in C
+#skillrack
+
+Solution:
+
+#include <stdio.h>
+
+int main() {
+    int N;
+    scanf("%d", &N);
+
+    int numbers[N];
+
+    // Read input numbers
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &numbers[i]);
+    }
+
+    // Sort numbers in ascending order
+    for (int i = 0; i < N; i++) {
+        for (int j = i + 1; j < N; j++) {
+            if (numbers[i] > numbers[j]) {
+                int temp = numbers[i];
+                numbers[i] = numbers[j];
+                numbers[j] = temp;
+            }
+        }
+    }
+
+    // Print numbers in alternating order (smallest, largest, second smallest, second largest, etc.)
+    int left = 0;
+    int right = N - 1;
+    while (left <= right) {
+        printf("%d ", numbers[left]);
+        if (left != right) {
+            printf("%d ", numbers[right]);
+        }
+        left++;
+        right--;
+    }
+
+    return 0;
+}
+
+
+
